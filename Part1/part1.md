@@ -312,9 +312,11 @@ where 키워드를 사용하여 case 의 조건을 더욱 확장할 수 있습�
 #### for-in
 swift3 에서 c 스타일의 for 구문이 사라졌습니다.
 
+```swift
 for 임시 상수 or 와일드카드 식별자(_) in 시퀀스 아이템 or 범위(0..<100) {
 	실행코드
 }
+```
 
 추후 map, filter, flatMap 등을 다룬다.
 
@@ -324,6 +326,7 @@ for 임시 상수 or 와일드카드 식별자(_) in 시퀀스 아이템 or 범�
 
 #### 구문 이름표
 break , continue 가 어떤 범위에 적용해야하는지 애매하거나 큰 범위의 반복문에 적용하고 싶을때 사용.
+
 ```
 loopname : for num in numbers {
 	loopname2 : for char in strings {
@@ -336,10 +339,75 @@ loopname : for num in numbers {
 
 ## CHAPTER 7 함수
 
+스위프트의 함수는 소괄호를 생략할 수 없습니다. 함수의 오버라이드 , 오버로드는 모두 지원합니다.
 
+```swift
+func 함수 이름(매개변수...) -> 반환 타입 {
+	실행 구문
+	return 반환 값
+}
+```
 
+전달인자 레이블 : 전달인자 레이블을 지정하면 함수 내부에서 매개 변수의 역할을 좀 더 명확히 할 수 있습니다. 매겨변수이름 전달인자 레이블 : 매개변수 타입 (순서)
 
+default 값 : 기본값을 지정하여 매개변수가 전달되지 않으면 기본값을 가지게 합니다.
 
+참조 타입 매개변수 : inout 매개변수 , 전달될 변수나 상수 앞에 & 붙여준다.
+
+```swift
+func referenceParameter(_ arr: inout [Int]){
+	arr[1] = 1
+}
+
+var numbers : [Int] = [10,11,12]
+
+referenceParameter( &numbers )
+
+print(numbers[1])
+```
+
+Void : 값의 반환이 굳이 필요하지 않다면 Void 로 표시하거나 아예 표현을 생략하면 된다.
+
+전달인자로 함수를 전달 받는 함수
+
+```swift
+func printMathResult(_ mF: CalculateTwoInts, _ a:Int, _ b:Int){
+	print("Result : \(mF(a,b)")
+}
+
+printMathResult(add,3,6)
+```
+
+중첩 함수 : 스위프트는 데이터 타입의 중첩이 자유롭습니다. 열거형 안에 또하나의 열거형, 클래스 안에 또 다른 클래스, 함수 안에 또다른 함수가 가능합니다. 일반적인 위치에 선언되어진 함수는 전역함수입니다. 그러나 함수 안의 함수로 구현된 중첩함수는 상위 함수의 내부에서만 사용할 수 있습니다. 그러나 상위 함수가 중첩 함수를 반환하면 밖에서도 사용할 수 있습니다.
+
+#### 종료되지 않는 함수 (Never)
+비반환 함수, 비반환 메서드, Never 라고 표현합니다. 정상적으로 끝날 수 없는 함수입니다.
+비반환 함수는 어디서든 호출이 가능하고, guard 구문 등에서 사용 됩니다.
+Never 타입에서 사용되는 표준함수는 fatalError("") 입니다.
+
+## CHAPTER 8 옵셔널
+
+#### 옵셔널 바인딩
+nil 체크의 안전적이고 세련된 방식
+
+```swift
+var name : String? = "khk"
+
+if let n = name {
+	print(n)
+} else {
+	print("nil")
+}
+
+name = nil
+
+if let n = name {
+	print(n)
+} else {
+	print("nil")
+}
+
+```
 
 
 
