@@ -181,6 +181,8 @@ print("이름 : \(khk.name) , 나이 : \(khk.age) , 신장 : \(khk.height) ")
 각기 다른 위치에 같은 값이 들어갈 수 있다. isEmpty , count 프로퍼티를 사용할 수 있습니다.
 스위프트의 배열은 연결리스트(Linked-List) 형태를 띄고 있습니다.
 
+배열은 각 요소에 인덱스를 통해 접근할 수 있습니다. 잘못된 인덱스로 접근하려고 하면 익셉션 오류가 발생합니다. 맨 처음과 맨 마지막 요소는 first 와 last 프로퍼티를 통해 가져올 수 있습니다. index(of:) 메서드를 사용하면 해당 요소의 인덱스를 알아낼 수도 있습니다. 만약, 중복된 요소가 있다면 제일 먼저 발견된 요소의 인덱스를 반환합니다. 맨 뒤에 요소를 추가하려면 append( _ : ) 메서드를 사용합니다. 중간에 요소를 추가하려면 insert( _ : at :) 메서드를 사용하면 됩니다. 삭제는 remove( _ : )
+
 ```swift
 var names : Array<String> = ["gd", "top" , "zico" , "beenzino"]
 var names : [String]  = ["gd", "top" , "zico" , "beenzino"]
@@ -191,12 +193,21 @@ var emptyArray : [Any] = []
 
 print(emptyArray.isEmpty)
 print(names.count)
-```
 
-배열은 각 요소에 인덱스를 통해 접근할 수 있습니다. 잘못된 인덱스로 접근하려고 하면 익셉션 오류가 발생합니다. 맨 처음과 맨 마지막 요소는 first 와 last 프로퍼티를 통해 가져올 수 있습니다. index(of:) 메서드를 사용하면 해당 요소의 인덱스를 알아낼 수도 있습니다. 만약, 중복된 요소가 있다면 제일 먼저 발견된 요소의 인덱스를 반환합니다. 맨 뒤에 요소를 추가하려면 append( _ : ) 메서드를 사용합니다. 중간에 요소를 추가하려면 insert( _ : at :) 메서드를 사용하면 됩니다. 삭제는 remove( _ : )
+names[4] = "top"
+names.append("elsa")
+names.append(contentsOf: ["abc","max"])
+names.insert("happy", at: 2)
+names.insert(contentsOf: ["jkjk","aaa"], at 5)
 
-```swift
-//
+print(names[4])
+
+print(names.index(of: "gd")
+
+let firstItem : String = names.removeFirst()
+let indexOneItem : String = names.remove(at : 1)
+
+print(names[1..3])
 
 ```
 
@@ -205,7 +216,21 @@ print(names.count)
 삭제는 removeValue(forKey: ) 메서드를 이용합니다.
 
 ```swift
-//
+typealias StringIntDictionary = [String: Int]
+
+var nfn: Dictionary<String, Int> = Dictionary<String, Int>()
+var nfn: [String: Int] = [String: Int]()
+var nfn: [String: Int] = [:]
+
+var nfn:StringIntDictionary = StringIntDictionary()
+
+var nfn: [String: Int] = ["khk":10, "dfd":200]
+
+print(nfn.isEmpty)
+print(nfn.count)
+
+print(nfn["khk"])
+
 ```
 
 #### 세트 ( Set )
@@ -217,10 +242,19 @@ isEmpty , count 프로퍼티가 있고,
 insert( _ : ) , remove( _ : ) 메서드가 있습니다.
 
 ```swift
-//
+var names: Set<String> = Set<String>()
+var names: Set<String> = ["a","b","c"]
+
+var numbers = [1,2,3]
+
+print(type(of: numbers))
+print(type(of: names))
+
+names.insert("dkfj")
+names.remove("a")
 ```
 
-두 세트의 교집합, 합집합 등 연산하기에도 매우 용이합니다.
+두 세트의 교집합, 합집합 , 포함관계 연산하기에도 매우 용이합니다.
 sorted() 메서드를 통하여 정렬된 배열을 반환할 수도 있습니다.
 
 ```swift
@@ -235,14 +269,21 @@ sorted() 메서드를 통하여 정렬된 배열을 반환할 수도 있습니�
 - 예상된 입력 값이 한정되어 있을 때
 
 ```swift
-//
+enum School {
+	case primary
+	case elementary
+	case middle
+}
 ```
 
 원시값 : 특정 타읍으로 지정된 값을 가질 수 있다. rawValue 라는 프로퍼티를 통해 가져온다.
 
 
 ```swift
-//
+enum School : String {
+	case primary = "유치원"
+	case elementart = "초등학교"
+}
 ```
 
 원시 값 정보를 통해 열거형 변수 또는 상수를 가져올 수 있습니다. 만약 올바르지 않은 원시값이라면 
