@@ -207,7 +207,7 @@ print(names.index(of: "gd")
 let firstItem : String = names.removeFirst()
 let indexOneItem : String = names.remove(at : 1)
 
-print(names[1..3])
+print(names[1...3])
 
 ```
 
