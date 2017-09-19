@@ -503,4 +503,36 @@ myAccount.credit = 1000
 ```
 
 ### 10.1.5 전역변수와 지역변수
+### 10.1.6 타입 프로퍼티
+```swift
+class AClass{
+    //저장 타입 프로퍼티
+    static var typeProperty: Int = 0
+    
+    //저장 인스턴스 프로퍼티
+    var instanceProperty: Int = 0{
+        didSet{
+            AClass.typeProperty = instanceProperty + 100
+        }
+    }
+    
+    static var typeComputedProperty: Int{
+        get{
+            return typeProperty
+        }
+        
+        set{
+            typeProperty = newValue
+        }
+    }
+}
 
+AClass.typeProperty = 123
+
+let classInstance: AClass = AClass()
+
+classInstance.instanceProperty = 100
+
+print(AClass.typeProperty) // 200
+print(AClass.typeComputedProperty) // 200
+```
