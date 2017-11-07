@@ -111,6 +111,13 @@ func substractTwoValue<T: Integer>(a: T, b: T) -> T where T: FloatingPoint, T: E
 ## 22.5 프로토콜의 연관 타입
 
 ~~~swift
+protocol Container{
+    associatedtype E
+    var items: Array<E> {get}
+    var count: Int {get}
+    mutating func append(item: E)
+    subscript(i: Int) -> E {get}
+}
 struct CrycatStack: Container {
     typealias E = Int
     var count: Int{
